@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar usuari@</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <!-- El título -->
+    <main>
+        <h4 class="display-4 text-left mt-4 subtitulo">Editar usuari@</h4>
+    </main>
+
+    <!-- El formulario -->
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto caligrafia">
+            <form action="/modificar-usuario/{{usuario.id_usuario}}" method="post">
+                <div class="form-group">
+                    <label for="nombre_usuario">Nombre usuari@</label>
+                    <input type="text" class="form-control" name="editar-nombre-usuario" id="nombre_usuario"
+                    placeholder= "Nuevo nombre usuari@" value="{{usuario.nombre_usuario}}">
+                </div>
+                <div class="form-group">
+                    <label for="contrasena_usuario">Contraseña</label>
+                    <input type="text" class="form-control" name="editar-contrasena-usuario" id="contrasena_usuario"
+                    placeholder="Nueva contraseña" value="{{usuario.contrasena_usuario}}">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Actualizar usuari@</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

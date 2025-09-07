@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear película</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <!-- El título -->
+    <main>
+        <h4 class="display-4 text-left mt-4 subtitulo">Crear película</h4>
+    </main>
+
+    <!-- El formulario -->
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto caligrafia">
+            <form action="/crear-peli" method="post">
+                <div class="form-group">
+                    <label for="titulo_peli">Título</label>
+                    <input type="text" class="form-control" name="titulo-peli" id="titulo_peli"
+                    placeholder= "Título película">
+                </div>
+                <div class="form-group">
+                    <label for="genero_peli">Género</label>
+                    <input type="text" class="form-control" name="genero-peli" id="genero_peli"
+                    placeholder="Género película">
+                </div>
+                <div class="form-group">
+                    <label for="duracion_peli">Duración</label>
+                    <input type="text" class="form-control" name="duracion-peli" id="duracion_peli"
+                    placeholder="Duración película en minutos">
+                </div>
+                <div class="form-group">
+                    <label for="director_peli">Director</label>
+                    <input type="text" class="form-control" name="director-peli" id="director_peli"
+                    placeholder="Director película">
+                </div>
+                <div class="form-group">
+                    <label for="elenco_peli">Elenco</label>
+                    <input type="text" class="form-control" name="elenco-peli" id="elenco_peli"
+                    placeholder="Elenco película">
+                </div>
+                <div class="form-group">
+                    <label for="productora_peli">Productora</label>
+                    <input type="text" class="form-control" name="productora-peli" id="productora_peli"
+                    placeholder="Productora película">
+                </div>
+                <div>
+                    <label for="sinopsis_peli" class="form-label mt-4">Sinopsis</label>
+                    <textarea class="form-control" id="sinopsis_peli" rows="3" name="sinopsis-peli"
+                    placeholder="Sinopsis película"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen_peli">Cabecera</label>
+                    <input type="text" class="form-control" name="imagen-peli" id="imagen_peli"
+                    placeholder="Imagen (nombre y formato)">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Crear película</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

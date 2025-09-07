@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar serie</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <!-- El título -->
+    <main>
+        <h4 class="display-4 text-left mt-4 subtitulo">Editar serie</h4>
+    </main>
+
+    <!-- El formulario -->
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto caligrafia">
+            <form action="/modificar-serie/{{serie.id_serie}}" method="post">
+                <div class="form-group">
+                    <label for="titulo_serie">Título</label>
+                    <input type="text" class="form-control" name="editar-titulo-serie" id="titulo_serie"
+                    placeholder= "Nuevo título" value="{{ serie.titulo_serie}}">
+                </div>
+                <div class="form-group">
+                    <label for="genero_serie">Género</label>
+                    <input type="text" class="form-control" name="editar-genero-serie" id="genero_serie"
+                    placeholder="Nuevo género" value="{{serie.genero_serie}}">
+                </div>
+                <div class="form-group">
+                    <label for="temporadas">Temporadas</label>
+                    <input type="text" class="form-control" name="editar-temporadas" id="temporadas"
+                    placeholder="Nuevas temporadas" value="{{serie.temporadas}}">
+                </div>
+                <div class="form-group">
+                    <label for="capitulos">Capítulos</label>
+                    <input type="text" class="form-control" name="editar-capitulos" id="capitulos"
+                    placeholder="Nuevos capítulos" value="{{serie.capitulos}}">
+                </div>
+                <div class="form-group">
+                    <label for="duracion_cap">Duración capítulos</label>
+                    <input type="text" class="form-control" name="editar-duracion-cap" id="duracion_cap"
+                    placeholder="Nueva duración de los capítulos en minutos" value="{{serie.duracion_cap}}">
+                </div>
+                <div class="form-group">
+                    <label for="director_serie">Director</label>
+                    <input type="text" class="form-control" name="editar-director-serie" id="director_serie"
+                    placeholder="Nuevo director" value="{{serie.director_serie}}">
+                </div>
+                <div class="form-group">
+                    <label for="elenco_serie">Elenco</label>
+                    <input type="text" class="form-control" name="editar-elenco-serie" id="elenco_serie"
+                    placeholder="Nuevo elenco" value="{{serie.elenco_serie}}">
+                </div>
+                <div class="form-group">
+                    <label for="productora_serie">Productora</label>
+                    <input type="text" class="form-control" name="editar-productora-serie" id="productora_serie"
+                    placeholder="Nueva productora" value="{{serie.productora_serie}}">
+                </div>
+                <div>
+                    <label for="sinopsis_serie" class="form-label mt-4">Sinopsis</label>
+                    <textarea class="form-control" id="sinopsis_serie" rows="3" name="editar-sinopsis-serie"
+                    placeholder="Nueva sinopsis">{{serie.productora_serie}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen_serie">Cabecera</label>
+                    <input type="text" class="form-control" name="editar-imagen-serie" id="imagen_serie"
+                    placeholder="Nueva imagen (nombre y formato) de la imagen" value="{{serie.imagen}}">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Actualizar serie</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

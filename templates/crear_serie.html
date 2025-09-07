@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear serie</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <!-- El título -->
+    <main>
+        <h4 class="display-4 text-left mt-4 subtitulo">Crear serie</h4>
+    </main>
+
+    <!-- El formulario -->
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto caligrafia">
+            <form action="/crear-serie" method="post">
+                <div class="form-group">
+                    <label for="titulo_serie">Título</label>
+                    <input type="text" class="form-control" name="titulo-serie" id="titulo_serie"
+                    placeholder= "Título serie">
+                </div>
+                <div class="form-group">
+                    <label for="genero_serie">Género</label>
+                    <input type="text" class="form-control" name="genero-serie" id="genero_serie"
+                    placeholder="Género serie">
+                </div>
+                <div class="form-group">
+                    <label for="temporadas">Temporadas</label>
+                    <input type="text" class="form-control" name="temporadas" id="temporadas"
+                    placeholder="Temporadas">
+                </div>
+                <div class="form-group">
+                    <label for="capitulos">Capítulos</label>
+                    <input type="text" class="form-control" name="capitulos" id="capitulos"
+                    placeholder="Capítulos totales">
+                </div>
+                <div class="form-group">
+                    <label for="duracion_cap">Duración de los capítulos</label>
+                    <input type="text" class="form-control" name="duracion-cap" id="duracion_cap"
+                    placeholder="Duración de los capítulos en minutos">
+                </div>
+                <div class="form-group">
+                    <label for="director_serie">Director</label>
+                    <input type="text" class="form-control" name="director-serie" id="director_serie"
+                    placeholder="Director serie">
+                </div>
+                <div class="form-group">
+                    <label for="elenco_serie">Elenco</label>
+                    <input type="text" class="form-control" name="elenco-serie" id="elenco_serie"
+                    placeholder="Elenco serie">
+                </div>
+                <div class="form-group">
+                    <label for="productora_serie">Productora</label>
+                    <input type="text" class="form-control" name="productora-serie" id="productora_serie"
+                    placeholder="Productora serie">
+                </div>
+                <div>
+                    <label for="sinopsis_serie" class="form-label mt-4">Sinopsis</label>
+                    <textarea class="form-control" id="sinopsis_serie" rows="3" name="sinopsis-serie"
+                    placeholder="Sinopsis serie"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen_serie">Cabecera</label>
+                    <input type="text" class="form-control" name="imagen-serie" id="imagen_serie"
+                    placeholder="Imagen (nombre y formato)">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Crear serie</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+body {
+     background:#434343;
+}
+.titulo {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 650;
+  font-style: normal;
+  font-size: 200px;
+  color:#DB202C;
+}
+.subtitulo{
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 650;
+  font-style: normal;
+  font-size: 50px;
+  color:#DB202C;
+}
+.contenedor1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor2{
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin: 2em
+}
+
+.btn-danger{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  background-color: #434343;
+  border-color: #DB202C;
+}
+.admin{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  color:#DB202C
+}
+.caligrafia{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal
+ }
+
+.visualizar {
+  margin: 4em
+}
+
+.carta {
+  display: flex
+}
+
+.logout {
+  margin-left: 120em;
+  color:#DB202C
+}
+
+.separador{
+  margin-left: 5em;
+}
+
+card {
+
+  border-radius: 0.25rem;
+
+  margin-bottom: 1.5rem;
+
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+  background-color: #fff;
+
+  color: #000;
+
+}
+
+.card-title {
+
+  font-size: 1.25rem;
+
+  font-weight: 500;
+
+}
+
+.card-text {
+
+  font-size: 1rem;
+
+}
+
+.card-body {
+
+  padding: 1rem;
+
+}
+
+.card-img-top {
+
+  width: 100%;
+
+  height: auto;
+
+}
+
+.btn-group .btn {
+
+  margin-right: 0.5rem;
+
+}
+
+.d-flex {
+
+  display: flex;
+
+}
+
+.justify-content-between {
+
+  justify-content: space-between;
+
+}
+
+.align-items-center {
+
+  align-items: center;
+
+}
+
+

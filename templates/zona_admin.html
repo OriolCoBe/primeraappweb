@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    <title>Zona Administrador@s</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+ <!-- Los mensajes flash -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <div class="alert alert-dismissible alert-success" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <main>
+    <!-- El título -->
+        <h4 class="display-4 text-left mt-4 subtitulo">¡Bienvenid@ a tu zona de administrador/a!</h4>
+
+    <!-- El botón de logout -->
+        <a class="logout" href="/logout" style="text-decoration:none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-left"
+             viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0
+                0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5
+                 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0
+                 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+            </svg>
+        </a>
+    </main>
+
+    <!-- Creo la barra con las opciones: "Películas", "Series", "Usuari@s", "Administrador@s" -->
+    <ul class="nav nav-tabs caligrafia" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="/ver-peliculas" aria-selected="false" tabindex="-1"
+            role="tab">Películas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/ver-series" aria-selected="false" tabindex="-1"
+            role="tab">Series</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/ver-usuarios" aria-selected="false" tabindex="-1"
+            role="tab">Usuari@s</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/ver-administradores" aria-selected="false"
+            tabindex="-1" role="tab">Administrador@s</a>
+        </li>
+    </ul>
+    <br>
+    <ul class="nav nav-tabs caligrafia" role="tablist">
+        <li>
+            <a href="/crear-peli" style="text-decoration:none">
+                <button type="button" class="btn btn-danger" fdprocessedid="re9u3" style="margin-left: 50px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-film" viewBox="0 0 16 16">
+                        <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8
+                        8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2
+                        3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
+                    </svg>
+                CREAR PELÍCULA
+                </button>
+            </a>
+        </li>
+
+        <li>
+            <a href="/crear-serie" style="text-decoration:none">
+                <button type="button" class="btn btn-danger" fdprocessedid="re9u3" style="margin-left: 50px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-film" viewBox="0 0 16 16">
+                        <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8
+                        8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2
+                        3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"/>
+                    </svg>
+                CREAR SERIE
+                </button>
+            </a>
+        </li>
+
+        <li>
+            <a href="/crear-usuario" style="text-decoration:none">
+                <button type="button" class="btn btn-danger" fdprocessedid="re9u3" style="margin-left: 50px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-person-plus" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1
+                        0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6
+                        10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1
+                        0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                CREAR USUARI@
+                </button>
+            </a>
+        </li>
+
+        <li>
+            <a href="/crear-administrador" style="text-decoration:none">
+                <button type="button" class="btn btn-danger" fdprocessedid="re9u3" style="margin-left: 50px">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-person-plus" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1
+                        0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6
+                        10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1
+                        0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                CREAR ADMINISTRADOR/A
+                </button>
+            </a>
+        </li>
+    </ul>
+
+    <!-- Hago que el contenido asociado a cada opción se vea justo debajo de la barra de opciones -->
+    <div id="myTabContent" class="tab-content caligrafia visualizar">
+
+     <!-- Creo el contenedor y las cartas para visualizar las película -->
+    <div class="tab-pane fade active show" id="ver-peliculas" role="tabpanel">
+        <div class="row">
+            {% for peliculas in lista_pelis %}
+            <div class="card mb-3" style="width: 20%">
+                <h3 class="card-header title caligrafia">{{peliculas.titulo_peli}}</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia">
+                        <div class="card-body">
+                            <h5 class="card-title caligrafia">{{peliculas.genero_peli}}</h5>
+                            <h6 class="card-subtitle text-muted caligrafia">{{peliculas.duracion_peli}}<a> minutos</a></h6>
+                        </div>
+                    </li>
+                </ul>
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                    <img class="card-img-top img-fluid" src="./static/peliculas/{{peliculas.imagen}}"
+                    alt="./static/peliculas/{{peliculas.imagen}}" width="100%">
+                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                </svg>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia columna">{{peliculas.director_peli}}</li>
+                    <li class="list-group-item caligrafia">{{peliculas.elenco_peli}}</li>
+                    <li class="list-group-item caligrafia">{{peliculas.productora_peli}}</li>
+                    <li class="list-group-item caligrafia">{{peliculas.sinopsis_peli}}</li>
+                </ul>
+                <div class="card-footer text-muted">
+                    <a href="/eliminar-peli/{{peliculas.id_peli}}" style="text-decoration:none">
+                        <svg style="margin_left: 10px" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                        fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1
+                            .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1
+                            0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1
+                            1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                        </svg>
+                    </a>
+                    <a href="/editar-peli/{{peliculas.id_peli}}" style="text-decoration:none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pen-fill" style="margin-left: 225px" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0
+                                0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5
+                                .5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.
+                                708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Creo el contenedor y las cartas para visualizar las series -->
+    <div class="tab-pane fade active show" id="ver-series" role="tabpanel">
+        <div class="row">
+            {% for series in lista_series %}
+            <div class="card mb-3" style="width: 20%">
+                <h3 class="card-header caligrafia">{{series.titulo_serie}}</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia">
+                        <div class="card-body">
+                            <h5 class="card-title caligrafia">{{series.genero_serie}}</h5>
+                            <h6 class="card-subtitle text-muted caligrafia">{{series.temporadas}} <a> temporadas</a></h6>
+                            <h6 class="card-subtitle text-muted caligrafia">{{series.capitulos}} <a> capítulos de </a>
+                                {{series.duracion_cap}} <a> minutos</a></h6>
+                        </div>
+                    </li>
+                </ul>
+                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                    <img class="card-img-top img-fluid" src="./static/series/{{series.imagen}}"
+                    alt="./static/series/{{series.imagen}}" width="100%">
+                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                </svg>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia columna">{{series.director_serie}}</li>
+                    <li class="list-group-item caligrafia">{{series.elenco_serie}}</li>
+                    <li class="list-group-item caligrafia">{{series.productora_serie}}</li>
+                    <li class="list-group-item caligrafia">{{series.sinopsis_serie}}</li>
+                </ul>
+                <div class="card-footer text-muted">
+                    <a href="/eliminar-serie/{{series.id_serie}}" style="text-decoration:none">
+                        <svg style="margin_left: 10px" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                        fill="red" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1
+                            .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1
+                            0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1
+                            1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                        </svg>
+                    </a>
+                    <a href="/editar-serie/{{series.id_serie}}" style="text-decoration:none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-pen-fill" style="margin-left: 225px" viewBox="0 0 16 16">
+                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0
+                                0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5
+                                .5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.
+                                708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Creo el contenedor y las cartas para visualizar a los usuarios -->
+    <div class="tab-pane fade active show" id="ver-usuarios" role="tabpanel">
+        <div class="row">
+            {% for usuarios in lista_usuarios %}
+            <div class="card mb-3" style="width: 18rem;">
+                <div class="card-header caligrafia">
+                    <a>NOMBRE USUARI@: </a>{{usuarios.nombre_usuario}}
+                </div>
+                <ul class="list-group list-group-flush caligrafia">
+                    <li class="list-group-item">ID: {{usuarios.id_usuario}}</li>
+                    <li class="list-group-item">Contraseña: {{usuarios.contrasena_usuario}}</li>
+                    <li class="list-group-item">Películas vistas: {{usuarios.pelis_vistas}}</li>
+                    <li class="list-group-item">Series vistas: {{usuarios.series_vistas}}</li>
+                    <li class="list-group-item">
+                        <a href="/eliminar-usuario/{{usuarios.id_usuario}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#DB202C"
+                            class="bi bi-person-dash" style="margin-left: 10px" viewBox="0 0 16 16">
+                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0
+                                1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                                <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68
+                                5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1
+                                1 1z"/>
+                            </svg>
+                        </a>
+                        <a href="/editar-usuario/{{usuarios.id_usuario}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-pen-fill" style="margin-left: 175px" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059
+                                2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1
+                                 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.
+                                708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Creo el contenedor y las cartas para visualizar a los administradores -->
+    <div class="tab-pane fade active show" id="ver-administradores" role="tabpanel">
+        <div class="row">
+            {% for administradores in lista_admin %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-header caligrafia">
+                    <a>NOMBRE ADMINISTRADOR/A: </a>{{administradores.nombre_admin}}
+                </div>
+                <ul class="list-group list-group-flush caligrafia">
+                    <li class="list-group-item">ID: {{administradores.id_admin}}</li>
+                    <li class="list-group-item">Contraseña: {{administradores.contrasena_admin}}</li>
+                    <li class="list-group-item">
+                        <a href="/eliminar-admin/{{administradores.id_admin}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#DB202C"
+                            class="bi bi-person-dash" style="margin-left: 10px" viewBox="0 0 16 16">
+                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0
+                                        1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0
+                                        0 0 0 4"/>
+                                <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484
+                                        10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5
+                                        0-6 3-6 4s1 1 1 1z"/>
+                            </svg>
+                        </a>
+                        <a href="/editar-admin/{{administradores.id_admin}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-pen-fill" style="margin-left: 175px" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0
+                                        0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5
+                                        .5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.
+                                        708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</body>
+</html>

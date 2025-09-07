@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar película</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <!-- El título -->
+    <main>
+        <h4 class="display-4 text-left mt-4 subtitulo">Editar película</h4>
+    </main>
+
+    <!-- El formulario -->
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto caligrafia">
+            <form action="/modificar-peli/{{peli.id_peli}}" method="post">
+                <div class="form-group">
+                    <label for="titulo_peli">Título</label>
+                    <input type="text" class="form-control" name="editar-titulo-peli" id="titulo_peli"
+                    placeholder= "Nuevo título" value="{{peli.titulo_peli}}">
+                </div>
+                <div class="form-group">
+                    <label for="genero_peli">Género</label>
+                    <input type="text" class="form-control" name="editar-genero-peli" id="genero_peli"
+                    placeholder="Nuevo género" value="{{peli.genero_peli}}">
+                </div>
+                <div class="form-group">
+                    <label for="duracion_peli">Duración</label>
+                    <input type="text" class="form-control" name="editar-duracion-peli" id="duracion_peli"
+                    placeholder="Nueva duración en minutos" value="{{peli.duracion_peli}}">
+                </div>
+                <div class="form-group">
+                    <label for="director_peli">Director</label>
+                    <input type="text" class="form-control" name="editar-director-peli" id="director_peli"
+                    placeholder="Nuevo director" value="{{peli.director_peli}}">
+                </div>
+                <div class="form-group">
+                    <label for="elenco_peli">Elenco</label>
+                    <input type="text" class="form-control" name="editar-elenco-peli" id="elenco_peli"
+                    placeholder="Nuevo elenco" value="{{peli.elenco_peli}}">
+                </div>
+                <div class="form-group">
+                    <label for="productora_peli">Productora</label>
+                    <input type="text" class="form-control" name="editar-productora-peli" id="productora_peli"
+                    placeholder="Nueva productora" value="{{peli.productora_peli}}">
+                </div>
+                <div>
+                    <label for="sinopsis_peli" class="form-label mt-4">Sinopsis</label>
+                    <textarea class="form-control" id="sinopsis_peli" rows="3" name="editar-sinopsis-peli"
+                    placeholder="Nueva sinopsis">{{peli.sinopsis_peli}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="imagen_peli">Cabecera</label>
+                    <input type="text" class="form-control" name="editar-imagen" id="imagen_peli"
+                    placeholder="Nueva imagen (nombre y formato) de la imagen" value="{{peli.imagen}}">
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">Actualizar película</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

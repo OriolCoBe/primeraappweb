@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    <title>Zona Usuari@</title>
+
+    <!-- Bootsrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+    integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+    <!-- Google fonts: Quicksand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google fonts: Bebas Neue (Netflix) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!-- main.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+<!-- Los mensajes flash -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <div class="alert alert-dismissible alert-success" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <main>
+        <!-- El título -->
+        <h2 class="display-4 text-left mt-4 subtitulo">¡Bienvenid@ {{usuario.nombre_usuario}}!</h2>
+
+        <!-- El botón de logout -->
+        <a class="logout" href="/logout" style="text-decoration:none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-left"
+             viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0
+                0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5
+                 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0
+                 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+            </svg>
+        </a>
+    </main>
+
+    <!-- Creo los buscadores -->
+     <div class="row">
+        <div class="col-md-6 offset-md-10 my-auto contenedor2">
+            <form class="d-flex" action="/buscador" method="post">
+                <input class="form-control me-sm-2" type="search" name="buscar"
+                placeholder="Buscar producto">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" fdprocessedid="r2g6m2"
+                style="margin-right: 300px">Buscar</button>
+            </form>
+            <p class="caligrafia">Por ahora has visualizado {{usuario.pelis_vistas}} películas y {{usuario.series_vistas}} series</p>
+        </div>
+     </div>
+
+   <!-- Creo la barra con las opciones: "Catálogo películas", "Películas vistas", "Películas favoritas" " Catálogo
+   Series", "Series vistas" y "Series favoritas" -->
+    <ul class="nav nav-tabs caligrafia" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" data-bs-toggle="tab" href="/catalogo-peliculas" aria-selected="false" tabindex="-1"
+            role="tab">Catálogo películas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/peliculas-visualizadas" aria-selected="false"
+            tabindex="-1" role="tab">Películas vistas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/peliculas-favoritas" aria-selected="false"
+            tabindex="-1" role="tab">Películas favoritas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/catalogo-series" aria-selected="false"
+            tabindex="-1" role="tab">Catálogo series</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/series-visualizadas" aria-selected="false"
+            tabindex="-1" role="tab">Series vistas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-bs-toggle="tab" href="/series-favoritas" aria-selected="false"
+            tabindex="-1" role="tab">Series favoritas</a>
+        </li>
+    </ul>
+
+    <!-- Hago que el contenido asociado a cada opción se vea justo debajo de la barra de opciones -->
+    <div id="myTabContent" class="tab-content caligrafia visualizar">
+
+        <!-- Creo el contenedor y las cartas para visualizar el catálogo de películas -->
+        <div class="tab-pane fade active show" id="catalogo-peliculas" role="tabpanel">
+            <div class="row">
+                {% for peliculas in lista_pelis %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{peliculas.titulo_peli}}</h3>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia">
+                        <div class="card-body">
+                            <h5 class="card-title caligrafia">{{peliculas.genero_peli}}</h5>
+                        </div>
+                    </li>
+                </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/peliculas/{{peliculas.imagen}}"
+                        alt="./static/peliculas/{{peliculas.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                    <div class="card-footer text-muted">
+                        <a href="/peli-vista/{{peliculas.id_peli}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#DB202C" id="vista"
+                            class="bi bi-eye vista" style="margin-left: 10px" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                            </svg>
+                        </a>
+                        <a href="/peli-favorita/{{peliculas.id_peli}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gold"
+                             class="bi bi-star-fill" style="margin-left: 250px" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Creo el contenedor y las cartas para visualizar las películas visualizadas por el usuario -->
+        <div class="tab-pane fade" id="peliculas-visualizadas" role="tabpanel">
+            <div class="row">
+                {% for peliculas in lista_pelis %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{peliculas.titulo_peli}}</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/peliculas/{{peliculas.imagen}}"
+                        alt="./static/peliculas/{{peliculas.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Creo el contenedor y las cartas para visualizar las películas favoritas del usuario -->
+        <div class="tab-pane fade" id="peliculas-favoritas" role="tabpanel">
+            <div class="row">
+                {% for peliculas in lista_pelis %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{peliculas.titulo_peli}}</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/peliculas/{{peliculas.imagen}}"
+                        alt="./static/peliculas/{{peliculas.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Creo el contenedor y las cartas para visualizar las series -->
+        <div class="tab-pane fade active show" id="catalogo-series" role="tabpanel">
+            <div class="row">
+                {% for series in lista_series %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{series.titulo_serie}}</h3>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item caligrafia">
+                        <div class="card-body">
+                            <h5 class="card-title caligrafia">{{series.genero_serie}}</h5>
+                        </div>
+                    </li>
+                </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/series/{{series.imagen}}"
+                        alt="./static/series/{{series.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                    <div class="card-footer text-muted">
+                        <a href="/serie-vista/{{series.id_serie}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#DB202C" id="vista"
+                            class="bi bi-eye vista" style="margin-left: 10px" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                            </svg>
+                        </a>
+                        <a href="/serie-favorita/{{series.id_serie}}" style="text-decoration:none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gold"
+                            class="bi bi-star-fill" style="margin-left: 250px" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Creo el contenedor y las cartas para visualizar las series visualizadas por el usuario -->
+        <div class="tab-pane fade" id="series-visualizadas" role="tabpanel">
+            <div class="row">
+                {% for series in lista_series %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{series.titulo_serie}}</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/series/{{series.imagen}}"
+                        alt="./static/series/{{series.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Creo el contenedor y las cartas para visualizar las series que el usuario ha marcado como favoritas -->
+        <div class="tab-pane fade" id="series-favoritas" role="tabpanel">
+            <div class="row">
+                {% for series in lista_series %}
+                <div class="card mb-3" style="width: 20%">
+                    <h3 class="card-header caligrafia">{{series.titulo_serie}}</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="0"
+                    aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice"
+                    viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
+                        <img class="card-img-top img-fluid" src="./static/series/{{series.imagen}}"
+                        alt="./static/series/{{series.imagen}}" width="100%">
+                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                    </svg>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
